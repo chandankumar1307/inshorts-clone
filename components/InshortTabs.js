@@ -1,14 +1,17 @@
 import { View, Text, useWindowDimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { SceneMap, TabView } from 'react-native-tab-view';
 import NewsScreen from '../Screens/NewsScreen';
 import DiscoverScreen from '../Screens/DiscoverScreen'
 import TopNavigation from './TopNavigation';
+import { NewsContext } from '../API/Context';
 const InshortTabs = () => {
+    const { index, setIndex, fetchNews } = useContext(NewsContext)
 
     const layout = useWindowDimensions();
+    // console.log(fetchNews(1));
 
-    const [index, setIndex] = useState(1);
+    // const [index, setIndex] = useState(1);
 
     const [routes] = useState([
         { key: 'first', title: 'Discovery' },
