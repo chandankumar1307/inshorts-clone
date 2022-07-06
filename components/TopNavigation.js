@@ -6,14 +6,16 @@ import { NewsContext } from '../API/Context';
 
 const TopNavigation = ({ index, setIndex }) => {
 
-    const { fetchNews } = useContext(NewsContext);
+    const { fetchNews, darkTheme, setDarkTheme } = useContext(NewsContext);
 
     return (
-        <View style={{ ...styles.container, backgroundColor: '#282c35' }} >
+        <View style={{ ...styles.container, backgroundColor: darkTheme ? '#282c35' : 'white' }} >
             {
                 index === 0 ?
-                    (<TouchableOpacity style={styles.left} >
-                        <Text style={{ ...styles.text, color: 'lightgrey' }} >
+                    (<TouchableOpacity style={styles.left}
+                        onPress={() => setDarkTheme(!darkTheme)}
+                    >
+                        <Text style={{ ...styles.text, color: darkTheme ? 'lightgrey' : 'black' }} >
                             <MaterialCommunityIcons
                                 name='theme-light-dark'
                                 size={24}
@@ -25,11 +27,11 @@ const TopNavigation = ({ index, setIndex }) => {
                             onPress={() => setIndex(index === 0 ? 1 : 0)}
                         >
                             <SimpleLineIcons name='arrow-left' size={15} color="#007FFF" />
-                            <Text style={{ ...styles.text, color: 'lightgrey' }} >Discover</Text>
+                            <Text style={{ ...styles.text, color: darkTheme ? 'lightgrey' : 'black' }} >Discover</Text>
                         </TouchableOpacity>
                     )
             }
-            <Text style={{ ...styles.center, color: 'white' }} >
+            <Text style={{ ...styles.center, color: darkTheme ? 'white' : 'black' }} >
                 {index ? 'All News' : 'Discover'}
             </Text>
             {index ? (
@@ -43,7 +45,7 @@ const TopNavigation = ({ index, setIndex }) => {
             ) : (
                 <TouchableOpacity style={styles.left}
                     onPress={() => setIndex(index === 0 ? 1 : 0)} >
-                    <Text style={{ ...styles.text, color: 'white' }} >All News</Text>
+                    <Text style={{ ...styles.text, color: darkTheme ? 'lightgrey' : 'black' }} >All News</Text>
                 </TouchableOpacity>
             )}
         </View>

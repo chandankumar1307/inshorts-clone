@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, Dimensions, Image, ImageBackground, TouchableOpacity, Linking } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { NewsContext } from '../API/Context';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width
 const SingleNews = ({ item, index }) => {
+    const { darkTheme } = useContext(NewsContext)
 
 
     return (
@@ -22,14 +24,14 @@ const SingleNews = ({ item, index }) => {
 
             <View style={{
                 ...styles.description,
-                backgroundColor: "#282C35"
+                backgroundColor: darkTheme ? "#282C35" : 'white'
             }} >
 
-                <Text style={{ ...styles.title, color: 'white' }} >{item.title}</Text>
-                <Text style={{ ...styles.content, color: 'white' }} >
+                <Text style={{ ...styles.title, color: darkTheme ? 'white' : 'black' }} >{item.title}</Text>
+                <Text style={{ ...styles.content, color: darkTheme ? 'white' : 'black' }} >
                     {item.description}
                 </Text>
-                <Text style={{ color: 'white' }} >
+                <Text style={{ color: darkTheme ? 'white' : 'black' }} >
                     Short by
                     <Text>
                         {item.author ?? " Unknown"}

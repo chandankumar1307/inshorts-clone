@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions } from 'react-native'
+import { View, Text, useWindowDimensions, TextInput } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { SceneMap, TabView } from 'react-native-tab-view';
 import NewsScreen from '../Screens/NewsScreen';
@@ -31,6 +31,7 @@ const InshortTabs = () => {
             initialLayout={{ width: layout.width }}
             renderTabBar={() => < TopNavigation index={index} setIndex={setIndex} />}
         />
+
     )
 }
 
